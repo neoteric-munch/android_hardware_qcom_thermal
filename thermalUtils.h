@@ -51,10 +51,11 @@ namespace hardware {
 namespace thermal {
 
 using ueventCB = std::function<void(Temperature &t)>;
+using notifyCB = std::function<void(CoolingDevice &c)>;
 
 class ThermalUtils {
 	public:
-		ThermalUtils(const ueventCB &inp_cb);
+		ThermalUtils(const ueventCB &inp_cb, const notifyCB &inp_cdev_cb);
 		~ThermalUtils() = default;
 		bool isCdevInitialized();
 		bool isCdevInitialized(CoolingType type);

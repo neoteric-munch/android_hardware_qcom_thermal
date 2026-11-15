@@ -47,7 +47,7 @@ namespace android {
 namespace hardware {
 namespace thermal {
 
-ThermalUtils::ThermalUtils(const ueventCB &inp_cb):
+ThermalUtils::ThermalUtils(const ueventCB &inp_cb, const notifyCB &inp_cdev_cb):
 	cfg(),
 	cmnInst(),
 	monitor(std::bind(&ThermalUtils::ueventParse, this,
@@ -115,10 +115,7 @@ bool ThermalUtils::isCdevInitialized(CoolingType type)
 
 bool ThermalUtils::isCdevInitialized()
 {
-	if (cdev.begin() == cdev.end())
-		return false;
-
-	return true;
+	return !cdevList.empty();
 }
 
 void ThermalUtils::Notify(struct therm_sensor& sens)
