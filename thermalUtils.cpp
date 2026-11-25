@@ -81,6 +81,21 @@ ThermalUtils::ThermalUtils(const ueventCB &inp_cb):
 	}
 }
 
+bool ThermalUtils::isSensorInitialized(TemperatureType type)
+{
+	std::lock_guard<std::mutex> _lock(sens_cb_mutex);
+
+	if (!is_sensor_init)
+		return false;
+
+	for (auto& it : thermalConfig) {
+		if (it.second.t.type == type)
+			return true;
+	}
+
+	return false;
+}
+
 void ThermalUtils::Notify(struct therm_sensor& sens)
 {
 	int severity = cmnInst.estimateSeverity(sens);

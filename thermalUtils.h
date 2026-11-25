@@ -60,6 +60,7 @@ class ThermalUtils {
 		{
 			return is_sensor_init;
 		};
+		bool isSensorInitialized(TemperatureType type);
 		bool isCdevInitialized()
 		{
 			return is_cdev_init;
