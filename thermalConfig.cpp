@@ -869,7 +869,7 @@ namespace thermal {
 		},
 		{
 			TemperatureType::SKIN,
-			{ "skin-msm-therm" },
+			{ "quiet_therm" },
 			"skin",
 			40000,
 			95000,
